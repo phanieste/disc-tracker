@@ -48,7 +48,8 @@ def graph():
                 color = colors[col_count-1],
                 legend = value,
                 x_axis_type = "datetime",
-                tools = "pan,reset,"
+                tools = "pan,reset",
+                plot_width=800
             )
         else:
             line(data['date'], data[value], color = colors[col_count-1], legend = value)
