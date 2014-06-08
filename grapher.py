@@ -18,7 +18,7 @@ def graph():
     data = pd.read_csv('data.csv', parse_dates=['date'])
     data = data.sort(['date'])
 
-    output_file("graph.html", title="disc time graph")
+    output_file("templates/graph.html", title="disc time graph")
 
     header = list(data.columns.values)
 
