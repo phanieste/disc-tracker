@@ -1,1 +1,1 @@
-web: gunicorn disc-tracker:app
+web: python app.py
