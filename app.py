@@ -30,7 +30,7 @@ def post():
 @app.route("/graph")
 def graph():
     grapher.graph()
-    return render_template("graphed.html")
+    return render_template("graph.html")
 
 @app.errorhandler(404)
 def page_not_found(error):
