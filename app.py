@@ -40,6 +40,8 @@ def page_not_found(error):
 def internal_server(error):
     return render_template("500.html"), 500
 
-#port = int(os.environ.get("PORT", 5000))
-#app.run(host="0.0.0.0", port=port)
-app.run(debug=True)
+port = int(os.environ.get("PORT", 5000))
+app.run(host="0.0.0.0", port=port)
+
+# for testing on local server:
+#app.run(debug=True)
