@@ -36,5 +36,10 @@ def graph():
 def page_not_found(error):
     return render_template("404.html"), 404
 
-port = int(os.environ.get("PORT", 5000))
-app.run(host="0.0.0.0", port=port)
+@app.errorhandler(500)
+def internal_server(error):
+    return render_template("500.html"), 500
+
+#port = int(os.environ.get("PORT", 5000))
+#app.run(host="0.0.0.0", port=port)
+app.run(debug=True)
