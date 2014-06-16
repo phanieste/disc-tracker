@@ -9,31 +9,41 @@
 
 import numpy as np
 import pandas as pd
-import collections
-import os
+import collections, os, boto
 from bokeh.plotting import *
 from bokeh.objects import *
+from boto.s3.key import Key
 
 def graph():
+    # download file from s3 using boto
+    AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
+    conn = boto.connect_s3(AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY)
+    bucket = conn.get_bucket('disc-tracker-assets')
+    k = Key(bucket)
+    k.key = 'data.csv'
+    k.get_contents_to_filename('data.csv')
+
     # use pandas to read csv file
     raw_data = pd.read_csv('data.csv', parse_dates=['date'])
 
-    os.remove('templates/graph.html')
     output_file("templates/graph.html", title="disc time graph")
 
     # spectral 5-class
-    colors = ["#d7191c", "#fdae61", "#000000", "#abdda4", "#2b83ba"]
+    colors = ["#d7191c", "#fdae61", "#000000", "#abdda4", "#2b83ba", "#7a0177"]
 
     # groups
     group_1 = ['becca', 'nia', 'audrey', 'ava']
     group_2 = ['steph', 'jess', 'taylor', 'jordan', 'katja']
-    group_3 = ['vso', 'zoe', 'erica', 'marguerite']
+    group_3 = ['vso', 'zoe', 'erica', 'marguerite', 'robyn']
     group_4 = ['georgelle', 'priya', 'clarissa', 'lo', 'louisa']
     group_5 = ['sophie', 'stitties', 'adele', 'roz']
+    alumni = ['melissa', 'rebecca']
 
-    groups = [group_1, group_2, group_3, group_4, group_5]
+    groups = [group_1, group_2, group_3, group_4, group_5, alumni]
 
-    group_header = ['date', 'group1', 'group2', 'group3', 'group4', 'group5']
+    group_header = ['date', 'group1', 'group2', 'group3', 'group4', 'group5', 'alumni']
 
     # new dataframe with group data
     zero_entries = pd.Series(np.zeros(len(raw_data.index)))
@@ -44,7 +54,8 @@ def graph():
         'group2': zero_entries,
         'group3': zero_entries,
         'group4': zero_entries,
-        'group5': zero_entries })
+        'group5': zero_entries,
+        'alumni': zero_entries })
 
     for group in groups:
         if group == group_1:
@@ -57,6 +68,8 @@ def graph():
             group_name = 'group4'
         elif group == group_5:
             group_name = 'group5'
+        elif group == alumni:
+            group_name = 'alumni'
 
         for member in group:
             group_data[group_name] += raw_data[member]
@@ -114,12 +127,14 @@ def graph():
     )
 
     # create bars
-    rect(range(1,6), 
+    rect(range(1,7), 
         [height/2 for height in table['bar_height']], 
         .8, 
         table['bar_height'],
         color=colors
     )
+
+    xgrid().grid_line_color=None
 
     hover = [t for t in curplot().tools if isinstance(t, HoverTool)][0]
     hover.tooltips = collections.OrderedDict([

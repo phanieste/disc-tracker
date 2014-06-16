@@ -6,7 +6,9 @@
 # ==============================
 
 from flask import Flask, render_template, request
-import file_writer, grapher, os
+from hashlib import sha1
+import file_writer, grapher, os, boto
+from boto.s3.key import Key
 
 app = Flask(__name__)
 
@@ -22,7 +24,20 @@ def post():
         name = request.form['name']
         minutes = request.form['minutes']
 
+        # write file to S3 using boto
+        AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
+        conn = boto.connect_s3(AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY)
+        bucket = conn.get_bucket('disc-tracker-assets')
+
         file_writer.readWrite(date, name, minutes)
+
+        k = Key(bucket)
+        k.key = 'data.csv'
+        k.set_contents_from_filename('temp.csv.tmp')
+        k.make_public()
+
         return render_template("posted.html")
     else:
         return render_template("form.html")
