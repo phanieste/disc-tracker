@@ -2,3 +2,5 @@
 *.pyc
 /disc-tracker
 ignorefile
+data.csv
+temp.csv.tmp
