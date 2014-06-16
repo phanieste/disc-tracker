@@ -20,7 +20,7 @@ def graph():
     AWS_SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
     S3_BUCKET = os.environ['S3_BUCKET_NAME']
 
-    conn = boto.connect_s3(AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY)
+    conn = boto.connect_s3(AWS_ACCESS_KEY, AWS_SECRET_KEY)
     bucket = conn.get_bucket(S3_BUCKET)
     k = Key(bucket)
     k.key = 'data.csv'

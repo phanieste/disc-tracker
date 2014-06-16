@@ -29,7 +29,7 @@ def post():
         AWS_SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
         S3_BUCKET = os.environ['S3_BUCKET_NAME']
 
-        conn = boto.connect_s3(AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY)
+        conn = boto.connect_s3(AWS_ACCESS_KEY, AWS_SECRET_KEY)
         bucket = conn.get_bucket(S3_BUCKET)
 
         file_writer.readWrite(date, name, minutes)
@@ -57,7 +57,7 @@ def internal_server(error):
     return render_template("500.html"), 500
 
 port = int(os.environ.get("PORT", 5000))
-app.run(host="0.0.0.0", port=port, debug=True)
+app.run(host="0.0.0.0", port=port)
 
 # for testing on local server:
 #app.run(debug=True)
