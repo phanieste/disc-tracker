@@ -25,11 +25,12 @@ def post():
         minutes = request.form['minutes']
 
         # write file to S3 using boto
-        AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+        AWS_ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']
+        AWS_SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+        S3_BUCKET = os.environ['S3_BUCKET_NAME']
 
         conn = boto.connect_s3(AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY)
-        bucket = conn.get_bucket('disc-tracker-assets')
+        bucket = conn.get_bucket(S3_BUCKET)
 
         file_writer.readWrite(date, name, minutes)
 
