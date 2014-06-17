@@ -28,7 +28,7 @@ def post():
         S3_BUCKET = 'disc-tracker-assets'
 
         conn = boto.connect_s3()
-        bucket = conn.get_bucket(S3_BUCKET)
+        bucket = conn.get_bucket(S3_BUCKET, validate=False)
 
         file_writer.readWrite(date, name, minutes)
 

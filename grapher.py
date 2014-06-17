@@ -16,10 +16,10 @@ from boto.s3.key import Key
 
 def graph():
     # download file from s3 using boto
-    S3_BUCKET = os.environ['S3_BUCKET_NAME']
+    S3_BUCKET = 'disc-tracker-assets'
 
     conn = boto.connect_s3()
-    bucket = conn.get_bucket(S3_BUCKET)
+    bucket = conn.get_bucket(S3_BUCKET, validate=False)
 
     k = Key(bucket)
     k.key = 'data.csv'

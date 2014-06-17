@@ -12,7 +12,7 @@ def readWrite(date, name, minutes):
     S3_BUCKET = 'disc-tracker-assets'
 
     conn = boto.connect_s3()
-    bucket = conn.get_bucket(S3_BUCKET)
+    bucket = conn.get_bucket(S3_BUCKET, validate=False)
     k = Key(bucket)
     k.key = 'data.csv'
     k.get_contents_to_filename('data.csv')
