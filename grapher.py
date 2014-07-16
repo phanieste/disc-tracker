@@ -39,7 +39,7 @@ def graph():
     group_3 = ['vso', 'zoe', 'erica', 'marguerite', 'robyn']
     group_4 = ['georgelle', 'priya', 'clarissa', 'lo', 'louisa']
     group_5 = ['sophie', 'stitties', 'adele', 'roz']
-    alumni = ['melissa', 'rebecca']
+    alumni = ['melissa', 'rebecca', 'emma']
 
     groups = [group_1, group_2, group_3, group_4, group_5, alumni]
 
