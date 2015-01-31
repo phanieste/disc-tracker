@@ -43,8 +43,7 @@ def post():
 
 @app.route("/graph")
 def graph():
-    grapher.graph()
-    return render_template("graph.html")
+    return render_template("graph.html", data=d3grapher.graph())
 
 @app.errorhandler(404)
 def page_not_found(error):

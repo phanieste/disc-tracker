@@ -10,3 +10,10 @@ This web app is written using Python Flask and the graphing aspect is handled by
 The deployed app can be found here: http://disc-tracker.herokuapp.com/
 
 This was a rather quickly-developed, simple app and is no longer in use! It is more of a prototype--definitely plenty of room for improvement. Great way to start knowing Flask.
+
+UPDATE 2015-01-30: Decided to dust off this app briefly and experiment with d3.js. No longer in use, but I figured I'd make the data visualization prettier by using d3.js to draw the graphs.
+
+# Changelog
+
+2015-01-30
+ * updated to use d3.js
