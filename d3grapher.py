@@ -88,43 +88,10 @@ def graph():
 
     # make custom json
     data_json = { col : [{group_data.index.name : str(i), "minutes" : group_data[col][i]} for i in group_data.index.values ] for col in group_data.columns.values }
-    # print data_json # test
-    return json.dumps(data_json)
+    # print json.dumps(data_json) # test
     # print group_data.to_string() # test
+    return json.dumps(data_json)
     # print group_data.to_json() # test
-
-    # return group_data.to_json()
-
-    # # drawing graph
-    # col_count = 0
-    # for value in group_header:
-    #     if value == 'date':
-    #         col_count += 1
-    #         continue
-    #     elif col_count == 1:
-    #         line(
-    #             group_data['date'], 
-    #             group_data[value],
-    #             color = colors[col_count-1],
-    #             legend = value,
-    #             x_axis_type = "datetime",
-    #             tools = "pan,reset",
-    #             plot_width=800
-    #         )
-    #     else:
-    #         line(
-    #             group_data['date'], 
-    #             group_data[value], 
-    #             color = colors[col_count-1], 
-    #             legend = value
-    #         )
-    #     col_count += 1
-
-    # # edit properties
-    # curplot().title = "NYPD Disc Tracker"
-    # grid().grid_line_alpha = 0
-
-    # yaxis().axis_label = "Disc Time (min)"
 
     # # BAR CHART OF TOTAL DISC TIME
     # bar_height = []

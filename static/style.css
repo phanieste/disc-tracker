@@ -5,3 +5,9 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+.axis {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
