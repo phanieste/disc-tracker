@@ -15,5 +15,12 @@ UPDATE 2015-01-30: Decided to dust off this app briefly and experiment with d3.j
 
 # Changelog
 
+ * scrapped line graph
+ * switch to interactive bar graph
+ * working overall bar graph
+
+2015-02-01
+ * functional d3.js line graph
+
 2015-01-30
  * updated to use d3.js
